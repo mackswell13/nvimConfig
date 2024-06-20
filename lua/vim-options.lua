@@ -5,6 +5,10 @@ vim.cmd("set shiftwidth=4")
 vim.g.mapleader = " "
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.autoindent = true
+vim.o.smartindent = true
 vim.o.swapfile = false
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

@@ -4,12 +4,12 @@ return {
         config = function()
             require("mason").setup()
         end
-    }, 
+    },
     {
         "williamboman/mason-lspconfig.nvim",
         config = function()
             require("mason-lspconfig").setup({
-                ensure_installed = { "lua_ls" }
+                ensure_installed = { "lua_ls", "cssls", "cssmodules_ls", "css_variables", "unocss", "html", "tsserver"  }
             })
         end
     },
@@ -18,6 +18,11 @@ return {
         config = function()
             local lspconfig = require("lspconfig")
             lspconfig.lua_ls.setup({})
+            lspconfig.tsserver.setup({})
+            lspconfig.cssmodules_ls.setup({})
+            lspconfig.html.setup({})
+
+            vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
         end
     }
-}   
+}
