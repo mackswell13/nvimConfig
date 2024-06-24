@@ -9,7 +9,7 @@ return {
         "williamboman/mason-lspconfig.nvim",
         config = function()
             require("mason-lspconfig").setup({
-                ensure_installed = { "lua_ls", "cssls", "cssmodules_ls", "css_variables", "unocss", "html", "tsserver"  }
+                ensure_installed = { "lua_ls", "svelte", "cssls", "cssmodules_ls", "css_variables", "unocss", "html", "tsserver"  }
             })
         end
     },
@@ -21,6 +21,7 @@ return {
             lspconfig.tsserver.setup({})
             lspconfig.cssmodules_ls.setup({})
             lspconfig.html.setup({})
+			lspconfig.svelte.setup({})
 
             vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
         end
