@@ -27,8 +27,14 @@ return {
             ensure_installed = {
                 "lua_ls",
                 "rust_analyzer",
-            	"tsserver",
-			},
+                "tsserver",
+                "eslint",
+                "gopls",
+                "tsserver",
+                "svelte",
+                "zls",
+                "sqlls"
+            },
             handlers = {
                 function(server_name) -- default handler (optional)
                     require("lspconfig")[server_name].setup {
