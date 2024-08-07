@@ -33,7 +33,9 @@ return {
                 "tsserver",
                 "svelte",
                 "zls",
-                "sqlls"
+                "sqlls",
+                "cssls",
+                "cssls",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
