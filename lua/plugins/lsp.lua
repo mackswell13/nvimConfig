@@ -36,6 +36,7 @@ return {
                 "sqlls",
                 "cssls",
                 "cssls",
+                "biome",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
