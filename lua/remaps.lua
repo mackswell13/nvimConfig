@@ -12,6 +12,11 @@ vim.keymap.set("n", "<leader>y", '"+y')
 vim.keymap.set("v", "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>Y", '"+Y')
 
+
+
+-- The NS macro
+vim.keymap.set("n", "<leader>ya", ":%y+<CR>")
+
 -- the best macro
 vim.keymap.set("n", "<leader>d", '"_dd')
 

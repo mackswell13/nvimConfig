@@ -1,7 +1,9 @@
 --vim.g.loaded_netrw = 1
 --vim.g.loaded_netrwPlugin = 1
 -- thicc boy cursor
+-- Set the cursor style
 vim.opt.guicursor = ""
+
 
 vim.g.mapleader = " "
 --line number
