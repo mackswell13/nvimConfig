@@ -28,10 +28,11 @@ return {
             ensure_installed = {
                 "lua_ls",
                 "rust_analyzer",
-                "gopls",
                 "zls",
                 "ols",
-                "ocamllsp"
+                "solargraph",
+                "elixirls",
+                "tsserver"
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -40,16 +41,6 @@ return {
                     })
                 end,
 
-                tsserver = function()
-                    local nvim_lsp = require("lspconfig")
-                    nvim_lsp.denols.setup({
-                        root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc"),
-                    })
-                    nvim_lsp.tsserver.setup({
-                        root_dir = nvim_lsp.util.root_pattern("package.json"),
-                        single_file_support = false,
-                    })
-                end,
                 zls = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.zls.setup({
@@ -65,7 +56,7 @@ return {
                     vim.g.zig_fmt_parse_errors = 0
                     vim.g.zig_fmt_autosave = 0
                 end,
-                ["lua_ls"] = function()
+                lua_ls = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.lua_ls.setup({
                         capabilities = capabilities,
@@ -77,6 +68,20 @@ return {
                                 },
                             },
                         },
+                    })
+                end,
+                solargraph = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.solargraph.setup({
+                        capabilities = capabilities,
+                        settings = {
+                            solargraph = {
+                                diagnostics = true,
+                                formatting = true,
+                                completion = true,
+                            },
+                        },
+                        filetypes = { "ruby", "erb", "eruby" }, -- Ensure that Solargraph knows about erb files.
                     })
                 end,
             },
