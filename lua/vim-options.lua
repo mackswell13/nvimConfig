@@ -44,3 +44,24 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Thicc boy cursor
+
+
+-- Jai Syntax
+vim.api.nvim_create_augroup('jaiFileType', { clear = true })
+
+vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
+  pattern = '*.jai',  -- Match files with the .jai extension
+  command = 'setfiletype jai',  -- Set the filetype to 'jai'
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = {'javascript', 'typescript', 'javascriptreact', 'typescriptreact'},
+  callback = function()
+    vim.bo.shiftwidth = 2
+    vim.bo.tabstop = 2
+    vim.bo.softtabstop = 2
+    vim.bo.expandtab = true
+  end,
+})
+
+vim.keymap.set("n", "<leader>?", vim.diagnostic.open_float, { desc = "Open diagnostic floating window" })

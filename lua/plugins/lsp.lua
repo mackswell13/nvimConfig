@@ -10,10 +10,13 @@ return {
         "hrsh7th/nvim-cmp",
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
+        "rafamadriz/friendly-snippets",
         "j-hui/fidget.nvim",
     },
     config = function()
         local cmp = require("cmp")
+        require("luasnip.loaders.from_snipmate").lazy_load()
+        require("luasnip.loaders.from_vscode").lazy_load()
         local cmp_lsp = require("cmp_nvim_lsp")
         local capabilities = vim.tbl_deep_extend(
             "force",
@@ -31,8 +34,12 @@ return {
                 "zls",
                 "ols",
                 "solargraph",
-                "elixirls",
-                "tsserver"
+                "tailwindcss",
+                "tsserver",
+                "html",
+                "clangd",
+                "marksman",
+                "sqls"
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -70,26 +77,26 @@ return {
                         },
                     })
                 end,
-                solargraph = function()
+                html = function()
                     local lspconfig = require("lspconfig")
-                    lspconfig.solargraph.setup({
+                    lspconfig.html.setup({
                         capabilities = capabilities,
-                        settings = {
-                            solargraph = {
-                                diagnostics = true,
-                                formatting = true,
-                                completion = true,
-                            },
-                        },
-                        filetypes = { "ruby", "erb", "eruby" }, -- Ensure that Solargraph knows about erb files.
+                        filetypes = { "html", "eruby" }
                     })
                 end,
+                ruby_lsp = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.ruby_lsp.setup({
+                        capabilities = capabilities,
+                    })
+                end,
+
             },
         })
 
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
-
         cmp.setup({
+
             snippet = {
                 expand = function(args)
                     require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
@@ -120,5 +127,8 @@ return {
                 prefix = "",
             },
         })
+
+        vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
+        vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
     end,
 }

@@ -2,9 +2,6 @@ return {
     "nvimtools/none-ls.nvim",
     dependencies = {
         "nvimtools/none-ls-extras.nvim",
-        dependencies = {
-            "nvimtools/none-ls-extras.nvim", --eslint_d
-        },
     },
     config = function()
         local null_ls = require("null-ls")
@@ -12,18 +9,21 @@ return {
             debug = true,
             sources = {
                 null_ls.builtins.formatting.stylua,
+                null_ls.builtins.formatting.clang_format,
                 null_ls.builtins.formatting.prettier.with({
-                    extra_args = { "--tab-width", "4" }, -- Set tab width to 2 spaces
+                    extra_args = { "--tab-width", "2" },                                              -- Set tab width to 2 spaces
                     filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" }, -- Apply to JS/TS files
                 }),
                 null_ls.builtins.formatting.stylelint.with({
                     filetypes = { "scss", "css", "less" },
-                })
-                --require("none-ls.diagnostics.eslint_d"), --eslint_d
+                }),
+
+                null_ls.builtins.formatting.rubocop,
+                null_ls.builtins.diagnostics.rubocop,
+                null_ls.builtins.formatting.erb_lint
             },
         })
 
         vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format, {})
     end,
 }
-

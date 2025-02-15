@@ -1,10 +1,8 @@
 return {
-    "nvim-lualine/lualine.nvim",
-    config = function()
-        require('lualine').setup({
-            options = {
-                theme = 'dracula'
-            }
-        })
-    end
+  "nvim-lualine/lualine.nvim",
+  dependencies = { "nvim-tree/nvim-web-devicons" },
+  enabled = true,
+  config = function()
+    require("darkvoid").setup()
+  end,
 }
