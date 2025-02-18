@@ -33,7 +33,7 @@ return {
                 "rust_analyzer",
                 "zls",
                 "ols",
-                "solargraph",
+                "ruby_lsp",
                 "tailwindcss",
                 "tsserver",
                 "html",
@@ -88,9 +88,10 @@ return {
                     local lspconfig = require("lspconfig")
                     lspconfig.ruby_lsp.setup({
                         capabilities = capabilities,
+                        cmd = { "/home/mackswell/.rbenv/shims/ruby-lsp" },
+                        filetypes = { "ruby" },
                     })
                 end,
-
             },
         })
 
@@ -127,8 +128,5 @@ return {
                 prefix = "",
             },
         })
-
-        vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
-        vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
     end,
 }

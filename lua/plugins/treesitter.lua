@@ -7,8 +7,7 @@ return {
       ensure_installed = { "ruby" },  -- Make sure Ruby parser is installed
       auto_install = true,             -- Automatically install missing parsers
       highlight = { enable = true },   -- Enable highlighting
-      indent = { enable = true },      -- Enable indentation support for Ruby
-      -- Add more settings here if needed (e.g., folding, textobjects)
+      indent = { enable = false },      -- Enable indentation support for Ruby
     })
   end,
 }

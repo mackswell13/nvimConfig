@@ -3,6 +3,10 @@ return {
   dependencies = { "nvim-tree/nvim-web-devicons" },
   enabled = true,
   config = function()
-    require("darkvoid").setup()
+      require("lualine").setup({
+        options = {
+            theme = "catppuccin"
+        },
+      })
   end,
 }
