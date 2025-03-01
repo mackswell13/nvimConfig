@@ -29,17 +29,39 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "80"
 
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "javascript",
+    callback = function()
+        vim.opt_local.colorcolumn = "100"
+    end,
+})
+
+-- Override for TypeScript files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "typescript",
+  callback = function()
+    vim.opt_local.colorcolumn = "100"
+  end,
+})
+
+-- Override for Ruby files
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "ruby",
+    callback = function()
+        vim.opt_local.colorcolumn = "120"
+    end,
+})
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -49,19 +71,19 @@ vim.opt.rtp:prepend(lazypath)
 -- Jai Syntax
 vim.api.nvim_create_augroup('jaiFileType', { clear = true })
 
-vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
-  pattern = '*.jai',  -- Match files with the .jai extension
-  command = 'setfiletype jai',  -- Set the filetype to 'jai'
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+    pattern = '*.jai',         -- Match files with the .jai extension
+    command = 'setfiletype jai', -- Set the filetype to 'jai'
 })
 
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = {'javascript', 'typescript', 'javascriptreact', 'typescriptreact'},
-  callback = function()
-    vim.bo.shiftwidth = 2
-    vim.bo.tabstop = 2
-    vim.bo.softtabstop = 2
-    vim.bo.expandtab = true
-  end,
+    pattern = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' },
+    callback = function()
+        vim.bo.shiftwidth = 2
+        vim.bo.tabstop = 2
+        vim.bo.softtabstop = 2
+        vim.bo.expandtab = true
+    end,
 })
 
 vim.keymap.set("n", "<leader>?", vim.diagnostic.open_float, { desc = "Open diagnostic floating window" })

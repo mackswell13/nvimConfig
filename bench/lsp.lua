@@ -39,7 +39,9 @@ return {
                 "html",
                 "clangd",
                 "marksman",
-                "sqls"
+                "sqls",
+                "jsonls",
+                "intelephense"
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -90,6 +92,12 @@ return {
                         capabilities = capabilities,
                         cmd = { "/home/mackswell/.rbenv/shims/ruby-lsp" },
                         filetypes = { "ruby" },
+                    })
+                end,
+                tailwindcss = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.tailwindcss.setup({
+                        autostart = false
                     })
                 end,
             },

@@ -11,8 +11,7 @@ return {
                 null_ls.builtins.formatting.stylua,
                 null_ls.builtins.formatting.clang_format,
                 null_ls.builtins.formatting.prettier.with({
-                    extra_args = { "--tab-width", "2" },                                              -- Set tab width to 2 spaces
-                    filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" }, -- Apply to JS/TS files
+                    filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "json", "yaml" }, -- Apply to JS/TS files
                 }),
                 null_ls.builtins.formatting.stylelint.with({
                     filetypes = { "scss", "css", "less" },

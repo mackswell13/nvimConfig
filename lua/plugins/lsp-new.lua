@@ -28,11 +28,11 @@ return {
             local lspconfig = require("lspconfig")
 
             lspconfig.tailwindcss.setup({
-                capabilities = capabilities
+                capabilities = capabilities,
             })
             lspconfig.ruby_lsp.setup({
                 capabilities = capabilities,
-                mason = false,
+                auto_start = true,
                 cmd = { "/home/mackswell/.rbenv/shims/ruby-lsp" },
             })
             lspconfig.lua_ls.setup({
